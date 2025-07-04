@@ -1,3 +1,4 @@
+// Aqui falla algo D:
 import React, { useState, useEffect } from 'react';
 import './PokemonFetcher.css'; // Opcional: para estilos básicos
 
