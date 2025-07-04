@@ -65,3 +65,32 @@
     padding: 15px;
     border-radius: 8px;
   }
+
+  .top-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espacio entre los elementos */
+  margin: 20px 0;
+}
+
+.top-controls input {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.top-controls button {
+  padding: 6px 12px;
+  background-color: #ffcb05;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2a75bb;
+  transition: background-color 0.3s ease;
+}
+
+.top-controls button:hover {
+  background-color: #f0b800;
+}
