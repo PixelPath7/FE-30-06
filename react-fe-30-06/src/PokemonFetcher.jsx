@@ -52,6 +52,10 @@ const PokemonFetcher = () => {
   }, []); // El array vacío asegura que se ejecute solo una vez al montar el componente
 
   const buscarPorTipo = async (tipo) => {
+    if (!tipo.trim()) {
+      alert("Por favor, ingresa un tipo de Pokémon válido");
+      return;
+    }
     try {
       setCargando(true);
       setError(null);
