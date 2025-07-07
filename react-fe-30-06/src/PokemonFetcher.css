@@ -1,15 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('./assets/Img/pokemon-background-3.png'); /* Puedes cambiar esta URL por otra */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  color: #ffffff;
+  text-indent: 50px; /* Mueve solo la primera línea del texto */
+}
+
 .pokemon-container {
     font-family: 'Arial', sans-serif;
     text-align: center;
     padding: 20px;
-    background-color: #c56464;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     align-self: center;
   }
   
   .pokemon-container h2 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 25px;
   }
   
@@ -21,11 +35,11 @@
   }
   
   .pokemon-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: rgba(255, 255, 255, 0.50);
+    border: 1px solid #000000;
     border-radius: 10px;
     padding: 15px;
-    width: 200px; /* Ancho fijo para cada tarjeta */
+    width: 200px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease-in-out;
   }
@@ -35,7 +49,8 @@
   }
   
   .pokemon-card h3 {
-    color: #007bff;
+    color: #ffffff;
+    background-color: rgba(13, 99, 110, 0.70);
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 1.3em;
@@ -50,7 +65,7 @@
   
   .pokemon-card p {
     font-size: 0.95em;
-    color: #555;
+    color: #ffffff;
     margin-bottom: 5px;
   }
   
@@ -70,7 +85,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Espacio entre los elementos */
+  gap: 10px;
   margin: 20px 0;
 }
 
@@ -93,4 +108,78 @@
 
 .top-controls button:hover {
   background-color: #f0b800;
+}
+
+.tipo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tipo-label,
+.tipo-valor {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: #e0e0e0;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.tipo-label {
+  background-color: #ffcb05;
+  color: #2a75bb;
+}
+
+.tipo-valor {
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Todos los tipos Y_Y (por que me hago esto oesi?) */
+.tipo-water    { background-color: #58abf6; color: white; }
+.tipo-fire     { background-color: #f7786b; color: white; }
+.tipo-grass    { background-color: #49d0b0; color: white; }
+.tipo-electric { background-color: #f7d02c; color: #ffffff; }
+.tipo-ice      { background-color: #96d9d6; color: #ffffff; }
+.tipo-fighting { background-color: #c03028; color: white; }
+.tipo-poison   { background-color: #a040a0; color: white; }
+.tipo-ground   { background-color: #e0c068; color: #ffffff; }
+.tipo-flying   { background-color: #a890f0; color: #ffffff; }
+.tipo-psychic  { background-color: #f85888; color: white; }
+.tipo-bug      { background-color: #a8b820; color: #ffffff; }
+.tipo-rock     { background-color: #b8a038; color: #ffffff; }
+.tipo-ghost    { background-color: #705898; color: white; }
+.tipo-dragon   { background-color: #7038f8; color: white; }
+.tipo-dark     { background-color: #705848; color: white; }
+.tipo-steel    { background-color: #b8b8d0; color: #ffffff; }
+.tipo-fairy    { background-color: #ee99ac; color: #ffffff; }
+.tipo-normal   { background-color: #a8a878; color: #ffffff; }
+
+.tipo-valor-multiple {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.tipo-valor {
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+.tipo-valor:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.tipo-valor:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-right: none;
 }

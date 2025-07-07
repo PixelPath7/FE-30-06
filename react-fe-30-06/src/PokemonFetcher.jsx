@@ -1,6 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import './PokemonFetcher.css'; // Opcional: para estilos básicos
 
+const tipoTraducido = {
+  fuego: "fire",
+  agua: "water",
+  planta: "grass",
+  eléctrico: "electric",
+  hielo: "ice",
+  lucha: "fighting",
+  veneno: "poison",
+  tierra: "ground",
+  volador: "flying",
+  psíquico: "psychic",
+  bicho: "bug",
+  roca: "rock",
+  fantasma: "ghost",
+  dragón: "dragon",
+  siniestro: "dark",
+  acero: "steel",
+  hada: "fairy",
+  normal: "normal"
+};
+
+const traducirTipo = (tipoUsuario) => {
+  const tipo = tipoUsuario.toLowerCase();
+  return tipoTraducido[tipo] || tipo; // Si no se encuentra, devuelve el original
+};
+
 const PokemonFetcher = () => {
   const [pokemones, setPokemones] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -8,7 +34,6 @@ const PokemonFetcher = () => {
   const [tipoBusqueda, setTipoBusqueda] = useState('');
   const [tipoActual, setTipoActual] = useState('');
 
-  // Esta función fue movida aquí afuera para poder usarla desde el botón también
   const fetchPokemones = async () => {
     try {
       setCargando(true);
@@ -19,7 +44,7 @@ const PokemonFetcher = () => {
 
       // Generar 6 IDs de Pokémon únicos aleatorios
       while (pokemonIds.size < 6) {
-        const randomId = Math.floor(Math.random() * 898) + 1; // 898 es el número actual de Pokémon en la PokeAPI (puedes ajustarlo)
+        const randomId = Math.floor(Math.random() * 898) + 1;
         pokemonIds.add(randomId);
       }
 
@@ -59,13 +84,14 @@ const PokemonFetcher = () => {
     try {
       setCargando(true);
       setError(null);
-      const response = await fetch(`https://pokeapi.co/api/v2/type/${tipo}`);
+      const tipoTraducido = traducirTipo(tipo);
+      const response = await fetch(`https://pokeapi.co/api/v2/type/${tipoTraducido}`);
+
       if (!response.ok) {
         throw new Error(`Tipo "${tipo}" no encontrado`);
       }
       const data = await response.json();
 
-      // Limitar la cantidad de Pokémon mostrados (opcional)
       const pokemonesDelTipo = data.pokemon; // Muestra todos los de la base de datos de la API
 
       const detalles = await Promise.all(
@@ -108,8 +134,18 @@ const PokemonFetcher = () => {
           placeholder="Buscar por tipo (ej. fire, water)"
           value={tipoBusqueda}
           onChange={(e) => setTipoBusqueda(e.target.value.toLowerCase())}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              buscarPorTipo(tipoBusqueda);
+              setTipoBusqueda('');
+            }
+          }}
         />
-        <button onClick={() => buscarPorTipo(tipoBusqueda)}>Buscar</button>
+        <button onClick={() => {
+          buscarPorTipo(tipoBusqueda);
+          setTipoBusqueda('');
+        }}
+        >Buscar</button>
       </div>
 
       <div className='pokemon-container'>
@@ -123,9 +159,16 @@ const PokemonFetcher = () => {
             <div key={pokemon.id} className="pokemon-card">
               <h3>{pokemon.nombre.charAt(0).toUpperCase() + pokemon.nombre.slice(1)}</h3>
               <img src={pokemon.imagen} alt={pokemon.nombre} />
-              <p>
-                **Tipos:** {pokemon.tipos.map(type => type.charAt(0).toUpperCase() + type.slice(1)).join(', ')}
-              </p>
+              <div className="tipo-container">
+                <span className="tipo-label">Type</span>
+                <div className="tipo-valor-multiple">
+                  {pokemon.tipos.map(type => (
+                    <span key={type} className={`tipo-valor tipo-${type}`}>
+                      {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </span>
+                    ))}
+                  </div>
+              </div>
             </div>
           ))}
         </div>
@@ -135,4 +178,3 @@ const PokemonFetcher = () => {
 };
 
 export default PokemonFetcher;
-

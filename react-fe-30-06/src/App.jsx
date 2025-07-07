@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PokemonFetcher from './PokemonFetcher';
+import './PokemonFetcher.css';
 
 function App() {
   return (
